@@ -1,7 +1,15 @@
-PyQt6>=6.4
-pyqtgraph>=0.13
-pandas>=2.0
-numpy>=1.24
-akshare>=1.12
-baostock>=0.8.9
-Pillow>=10.0
+# 核心依赖（版本下限 = 开发环境实际验证通过的版本，Python 3.11+，本项目在 3.13 开发）
+
+PyQt6>=6.11          # GUI 框架
+pyqtgraph>=0.14      # 频率分布图 / 累积概率曲线
+pandas>=3.0          # K线数据处理（3.0 起默认 Copy-on-Write）
+numpy>=2.5           # 数值计算
+
+akshare>=1.18        # 备用数据源（东方财富分钟线 / 股票列表）
+baostock>=0.9        # A股 5 分钟 K 线主数据源（稳定、导入快）
+
+Pillow>=12.0         # 图标生成（创建图标.py）
+pywin32>=312; sys_platform == "win32"   # 创建桌面快捷方式（创建快捷方式.py，仅 Windows）
+
+# 说明：akshare 的传递依赖（requests / lxml / beautifulsoup4 / openpyxl / tqdm 等）
+# 由 pip 自动安装，无需手动列出。
