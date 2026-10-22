@@ -112,10 +112,20 @@ python test_all.py --online   # 追加联网测试（搜索 / 取数 / 统计）
 
 ---
 
-## 📝 数据来源与注意事项
+## 📡 数据源
 
-- **A股 5 分钟 K 线**：Baostock 优先（稳定、导入快），AkShare 备用（3 次重试）
-- 股票列表本地缓存 1 天（`.stock_list_cache.json`），后台线程静默刷新
+| 数据源 | 用途 | 实际接口 | 说明 |
+|---|---|---|---|
+| **Baostock**（主） | 5 分钟 K 线 / 日线 | `query_history_k_data_plus`（`frequency="5"` / `"d"`，`adjustflag="2"` 前复权） | 匿名登录（`bs.login()` 无需注册），稳定、导入快；单次查询有区间上限，超长区间请分批 |
+| **AkShare**（备） | 5 分钟 / 日线降级源 | `stock_zh_a_hist_min_em` / `stock_zh_a_hist`（`adjust="qfq"` 前复权） | 东方财富接口，3 次重试 + 2s 间隔；Baostock 失败时自动切换 |
+| **AkShare** | 股票列表 | `stock_info_a_code_name` | 全市场代码/名称，本地缓存 1 天（`.stock_list_cache.json`，已 gitignore），后台线程静默刷新 |
+
+- 两个行情源均为**前复权**口径；除权日的价格跳变可能造成「伪极值」，单日除权日统计不可信
+- 取数失败会按「Baostock → AkShare → 报错」自动降级，界面上有明确提示
+- 两者均为公开免费接口，**无需任何 API Key / 账号**
+
+## 📝 注意事项
+
 - **口径提醒**：`P(N)` 是历史频率，**不是**未来的概率；涨跌停/一字板日（最高=最低=收盘）
   会显著抬高 `P(1)`，程序不会自动剔除，解读时请留意
 
