@@ -1,0 +1,7 @@
+PyQt6>=6.4
+pyqtgraph>=0.13
+pandas>=2.0
+numpy>=1.24
+akshare>=1.12
+baostock>=0.8.9
+Pillow>=10.0

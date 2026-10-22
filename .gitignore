@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行时缓存（股票列表本地缓存，自动生成）
+.stock_list_cache.json
+
+# 本地归档（已移除文件的备份，不入库）
+archive/
+
+# 日志
+*.log
+
+# 系统垃圾
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
