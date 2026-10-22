@@ -13,8 +13,8 @@ JSONL = r"C:\Users\Administrator\.workbuddy-ai\projects\E-WorkBuddyData-workspac
 OUT_DIR = r"D:\dsh\dsh\K线极值统计工具"
 
 # 需要重建的目标文件（全部）
-# 注：2026-10-22 重构后，期货与数据源管理相关文件已删除；
-#     下面保留旧名单是为了在回放历史 jsonl 时仍能找回这些文件。
+# 注：部分文件在后续重构中已被移除，下面保留旧名单是为了在
+#     回放历史 jsonl 时仍能找回这些文件。
 TARGETS = {
     "kline_extreme_analyzer.py",
     "data_sources.json",
